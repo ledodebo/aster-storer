@@ -2,284 +2,245 @@
 {% load thumbnail %}
 <!DOCTYPE html>
 <html lang="en">
-<head><style>
-	@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-	</style>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ASTER - Product Details</title>
-	<link rel="icon" href="img/Fevicon.png" type="image/png">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'vendors/bootstrap/bootstrap.min.css'%}">
-  <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css'%}">
-	<link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css'%}">
-	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css'%}">
-  <link rel="stylesheet" href="{% static 'vendors/nice-select/nice-select.css'%}">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="{% static 'css/style.css'%}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTER - Product Details</title>
+    <link rel="icon" href="{% static 'img/Fevicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/nice-select/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-	<!--================ Start Header Menu Area =================-->
-	 {% include "parts/navbar.html" %}
-	<!--================ End Header Menu Area =================-->
-  <!--================Single Product Area =================-->
- 
-	<div class="product_image_area"  >
-		
-		<div class="container">
-			<div class="row s_product_inner" >
-				<div class="col-lg-6" >
-					{% for i in ch %}
-						<div class="single-prd-item" >
-							<img class="img-fluid" src="{{pk.image.url}}" alt="">
-						</div>
-						</div> 
-				</div>
-				<div class="col-lg-5 offset-lg-1">
-					
-					<div class="s_product_text">
-						<h3 id="name" >{{pk.name}}</h3>
-						<h2 id="price" >{{i.discount}}EGP /{{discount}}%-OFF</h2>
-						<h3 style="text-decoration: line-through;"  >{{i.price}}EGP</h3>
-						<ul class="list">
-							<li><a class="active" href=""><span>Size</span> : {{i.size}}</a></li>
-							<li><a class="active" href=""><span>Category</span> : {{i.Category}}</a></li>
-          
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
-              <li><a class="active" href=""><span> deliver on</span> : {{d_days}}</a></li>  
-						</ul>
-            {% endfor %}
-        
-            <style>
-              input {
-color: #693a86;
-/* The native appearance is hidden */
-appearance: none;
--webkit-appearance: none;
+    <!-- Start Header Menu Area -->
+    {% include "parts/navbar.html" %}
+    <!-- End Header Menu Area -->
 
-/* For a circular appearance we need a border-radius. */
-border-radius: 60%;
-
-/* The background will be the radio dot's color. */
-background: #693a86;
-
-/* The border will be the spacing between the dot and the outer circle */
-border: 3px solid #693a86;
-
-/* And by creating a box-shadow with no offset and no blur, we have an outer circle */
-box-shadow: 0 0 0 1px #693a86;
-}
-            </style>
-						
-            <div data-mdb-input-init class="form-outline"  class="radio" id="radio-2" name="group" style="width: 8rem;display: flex;margin-top: 5px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> 
-							<label class="form-label" style="margin-top: 8px;text-align: center;font-size: 15px;" id="qty" for="form1">quantity:</label>
-							<div  style="height: 32px;" class="">
-								&nbsp; &nbsp; &nbsp; </div>
-							<input type="number" id="form1" value="1" class="form-control form-icon-trailing" />
-						</div>
-						
-						  {% for i in pv %}
-						  <div class="card" style="margin-top: 10px; ">
-							<div class="card-body" style="border: 0.5px solid; border-color: #693a86;text-align: center;font-size: 10px;color: black; font-weight: 900;letter-spacing: 0.3px;">
-							<input class="form-check-input" {{i.ava}} type="radio" name="type"  value="{{i.id}}" id=""><span style="color: black;"> Size: </span> {{i.size}} --<span style="color: black;"> Type: </span> {{i.type}}--<span style="color: black;"> PRICE: </span> {{i.discount}}
-							</div>
-						  </div>
-              <span style="display: none;" id="idd">{{i.id}}</span>
-						  {% endfor %}
-             
-						<a  class="btn"  style="margin-top: 10px;margin-bottom: 10px;color: white;font-size: 17px;" id="add-to-cart" >اضف الي السلة</a>   
-						<button class="btn" style="margin-top: 10px;margin-bottom: 10px;color: white;background-color:#432861;font-size: 17px;" id="add-to-cart" onclick="pvi()" >اشتري دلوقتي</button>
-               	          
-						</div>
-            &nbsp;
-            &nbsp;
-            
-						<span  style="color: white;">{{pk.id}}</span>
-         <P>
-              Masterbox:  الاصدار الرسمي الاصلي و القادم من الماركات و الاعلي سعرا
-             <br>
-              Outlet: العطر نفس جودة النوع السابق من كل شيء ( رائحة - ثبات - فوحان ) - بدون علبه - 
-              <br>
-              Tester: زجاجة تجريبية 30ملي من العطر
-          <br>
-             <br> :للاستفسار
-             <br> 
-             <a href="https://www.facebook.com/profile.php?id=100095258344590">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16">
-                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                </svg>
-                </a>
-        <a href="https://www.instagram.com/aster_storre_/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#833AB4" class="bi bi-instagram" viewBox="0 0 16 16">
-          <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
-          </svg>
-        </a>
-        <a href="https://t.me/asterflowerstore">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#24A1DE" class="bi bi-telegram" viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
-          </svg>
-        </a>
-        <a href="https://wa.me/+201098876907">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#25D366" href="https://www.facebook.com/profile.php?id=100095258344590" class="bi bi-whatsapp" viewBox="0 0 16 16">
-          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-          </svg>
-        </a>
-            </P>		  
-				</div>
-			</div>
-      
-		</div>
-    
-	</div>
-  
-	<!--================End Single Product Area =================-->
-	<!--================Product Description Area =================-->
-	<section class="product_description_area">
-		<div class="container">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-					<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-				</li>	
-			</ul>
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p>{{pk.descretion}}</p>
-
-				</div>
-				</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================End Product Description Area =================-->
-	<!--================ Start related Product area =================-->  
-	
-	<section class="related-product-area section-margin--small mt-0">
-		<div class="container">
-			<div class="section-intro pb-60px">
-        <p>Popular Item in the market</p>
-        <h2>related <span class="section-intro__style">Product</span></h2>
-      </div>
-			<div class="row mt-30">
-      {% for i in rl %}	
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="{% url 'products' pk.id  %}"><img src="{{i.product.image.url}}"alt=""></a>
-              <div class="desc">
-                  <a href="{% url 'products' i.product.id  %}" id="name" class="title">{{i.product.name}}</a>
-                  <div class="price">{{i.discount}}EGP</div>
-              </div>
+    <!-- Start Single Product Area -->
+    <div class="product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    {% for i in ch %}
+                    <div class="single-prd-item">
+                        <img class="img-fluid" src="{{ pk.image.url }}" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3 id="name">{{ pk.name }}</h3>
+                        <h2 id="price">{{ i.discount }}EGP / {{ discount }}%-OFF</h2>
+                        <h3 style="text-decoration: line-through;">{{ i.price }}EGP</h3>
+                        <ul class="list">
+                            <li><a class="active" href=""><span>Size</span> : {{ i.size }}</a></li>
+                            <li><a class="active" href=""><span>Category</span> : {{ i.Category }}</a></li>
+                            <li><a href="#"><span>Availability</span> : In Stock</a></li>
+                            <li><a class="active" href=""><span>Deliver on</span> : {{ d_days }}</a></li>
+                        </ul>
+                        {% endfor %}
+                        <div class="form-outline" class="radio" id="radio-2" name="group" style="display: flex; align-items: center; margin-top: 5px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                            <label class="form-label" style="margin-top: 8px; text-align: center; font-size: 15px;" id="qty" for="form1">Quantity:</label>
+                            <input type="number" id="form1" value="1" class="form-control form-icon-trailing" style="width: 80px; margin-left: 10px;" />
+                        </div>
+                        {% for i in pv %}
+                        <div class="card" style="margin-top: 10px;">
+                            <div class="card-body" style="border: 0.5px solid; border-color: #693a86; text-align: center; font-size: 10px; color: black; font-weight: 900; letter-spacing: 0.3px;">
+                                <input class="form-check-input" {{ i.ava }} type="radio" name="type" value="{{ i.id }}" id="">
+                                <span style="color: black;">Size: </span>{{ i.size }} -- <span style="color: black;">Type: </span>{{ i.type }} -- <span style="color: black;">Price: </span>{{ i.discount }} EGP
+                            </div>
+                        </div>
+                        <span style="display: none;" id="idd">{{ i.id }}</span>
+                        {% endfor %}
+                        <a class="btn btn-primary mt-3 mb-3" id="add-to-cart">اضافة المنتج </a>
+                        <button class="btn btn-success mt-3 mb-3" id="buy-now" onclick="pvi()">اشتري دلوقتي</button>
+                        <p style="color: white;display: none;">{{ pk.id }}</p>
+                        <p>
+                            Masterbox: The official, original, and highest-priced version.
+                            <br>
+                            Outlet: Same quality as the previous version (scent - durability - spread) - without box.
+                            <br>
+                            Tester: 30ml test bottle of the perfume.
+                            <br><br>
+                            For inquiries:
+                            <br>
+                            <a href="https://www.facebook.com/profile.php?id=100095258344590">
+                                <i class="fab fa-facebook" style="color: blue;"></i>
+                            </a>
+                            <a href="https://www.instagram.com/aster_storre_/">
+                                <i class="fab fa-instagram" style="color: #833AB4;"></i>
+                            </a>
+                            <a href="https://t.me/asterflowerstore">
+                                <i class="fab fa-telegram" style="color: #24A1DE;"></i>
+                            </a>
+                            <a href="https://wa.me/+201098876907">
+                                <i class="fab fa-whatsapp" style="color: #25D366;"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        {% endfor %}
-      </div>
-		</div>
-	</section>
-	<script>
-    function pvi() {
-    const id = $("#idd").text();
-    url = ( 'checkrn/'+id)
-    window.location.href = url;
+    </div>
+    <!-- End Single Product Area -->
+
+    <!-- Start Product Description Area -->
+    <section class="product_description_area">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <p>{{ pk.descretion }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Description Area -->
+
+    <!-- Start Related Product Area -->
+    <section class="related-product-area section-margin--small mt-0">
+        <div class="container">
+            <div class="section-intro pb-60px">
+                <p>Popular Item in the market</p>
+                <h2>Related <span class="section-intro__style">Product</span></h2>
+            </div>
+            <div class="row mt-30">
+                {% for i in rl %}
+                <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                    <div class="single-search-product-wrapper">
+                        <div class="single-search-product d-flex">
+                            <a href="{% url 'products' pk.id %}"><img src="{{ i.product.image.url }}" alt=""></a>
+                            <div class="desc">
+                                <a href="{% url 'products' i.product.id %}" id="name" class="title">{{ i.product.name }}</a>
+                                <div class="price">{{ i.discount }}EGP</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- End Related Product Area -->
+<style>
+  body {
+    font-family: 'Oswald', sans-serif;
 }
-  </script>
-	<!--================ end related Product area =================-->  	
-  <!--================ Start footer Area  =================-->	
-	 {% include "parts/footer.html" %}
-	<!--================ End footer Area  =================-->
-  <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js'%}"></script>
-  <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js'%}"></script>
-  <script src="{% static 'vendors/skrollr.min.js'%}"></script>
-  <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js'%}"></script>
-  <script src="{% static 'vendors/nice-select/jquery.nice-select.min.js'%}"></script>
-  <script src="{% static 'vendors/jquery.ajaxchimp.min.js'%}"></script>
-  <script src="{% static 'vendors/mail-script.js'%}"></script>
-  <script src="{% static 'js/main.js'%}"></script>
-  <script>
-	document.addEventListener('DOMContentLoaded', () => {
-    const radioButtons = document.querySelectorAll('input[type="radio"][name="type"]');
-    const pp = $('#price');
-    const addToCartButton = $("#add-to-cart");
-    const itemCount = $('#count');
-    
-    radioButtons.forEach(radio => {
-        radio.addEventListener('change', () => {
-            const checkedOption = Array.from(radioButtons).find(radio => radio.checked);
-            if (checkedOption) {
-                console.log(`Checked: ${checkedOption.value}`);
-                const id = checkedOption.value;
-                const idd = $("#idd").text(id)
-                $.ajax({
-                    url: "{% url 'getprice' %}",
-                    data: {
-                        'id': id,
-                    },
-                    dataType: 'json',
-                    success: function(response) {
-                        console.log(response.price);
-                        pp.text(response.price + "EGP");
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error fetching price:", error);
+
+.product_image_area {
+    padding: 60px 0;
+}
+
+
+
+.s_product_text h3 {
+    font-size: 2rem;
+}
+
+
+
+.s_product_text .list li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.s_product_text .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+}
+
+.product_description_area {
+    padding: 40px 0;
+}
+
+.related-product-area {
+    padding: 60px 0;
+}
+
+
+</style>
+    <!-- Start Footer Area -->
+    {% include "parts/footer.html" %}
+    <!-- End Footer Area -->
+
+    <script src="{% static 'vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendors/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'vendors/mail-script.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        function pvi() {
+            const id = $("#idd").text();
+            const url = `checkrn/${id}`;
+            window.location.href = url;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const radioButtons = document.querySelectorAll('input[type="radio"][name="type"]');
+            const priceElement = $('#price');
+            const addToCartButton = $("#add-to-cart");
+            const itemCount = $('#count');
+
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const checkedOption = Array.from(radioButtons).find(radio => radio.checked);
+                    if (checkedOption) {
+                        const id = checkedOption.value;
+                        $("#idd").text(id);
+                        $.ajax({
+                            url: "{% url 'getprice' %}",
+                            data: { 'id': id },
+                            dataType: 'json',
+                            success: function(response) {
+                                priceElement.text(response.price + "EGP");
+                            },
+                            error: function(xhr, status, error) {
+                                console.error("Error fetching price:", error);
+                            }
+                        });
                     }
                 });
-            } else {
-                console.log('');
-            }
-        });
-    });
+            });
 
-    // Bind the click event for the "add-to-cart" button once
-    addToCartButton.on('click', function() {
-        const checkedOption = Array.from(radioButtons).find(radio => radio.checked);
-        if (checkedOption) {
-            const id = checkedOption.value;
-            const qty = $("#form1").val();
-            const thisButton = $(this);
-            let offerm = $("#offer")
-            console.log("id", id);
-            console.log("qty", qty);
-            console.log("count", itemCount);
-            $.ajax({
-                url: "add/",
-                data: {
-                    'id': id,
-                    'qty': qty,
-                },
-                dataType: 'json',
-                success: function(response) {
-                    thisButton.html("تم اضافة المنتج");
-                    itemCount.text(response.items_count);
-                    offerm.text(response.offer)
-                    Toastify({
-                        text: "تم اضافة المنتج بنجاح",
-                        duration: 2000,
-                        newWindow: false,
-                        close: true,
-                        gravity: "bottom", // `top` or `bottom`
-                        position: "center", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "#693a86",
+            addToCartButton.on('click', function() {
+                const checkedOption = Array.from(radioButtons).find(radio => radio.checked);
+                if (checkedOption) {
+                    const id = checkedOption.value;
+                    const qty = $("#form1").val();
+                    $.ajax({
+                        url: "add/",
+                        data: { 'id': id, 'qty': qty },
+                        dataType: 'json',
+                        success: function(response) {
+                            addToCartButton.html("تم اضافة المنتج");
+                            itemCount.text(response.items_count);
+                            $("#offer").text(response.offer);
+                            Toastify({
+                                text: "تم اضافة المنتج بنجاح",
+                                duration: 2000,
+                                close: true,
+                                gravity: "bottom",
+                                position: "center",
+                                stopOnFocus: true,
+                                style: { background: "#693a86" }
+                            }).showToast();
                         },
-                        onClick: function(){} // Callback after click
-                    }).showToast();
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error adding item:", error);
+                        error: function(xhr, status, error) {
+                            console.error("Error adding item:", error);
+                        }
+                    });
                 }
             });
-        } else {
-            console.log("No option selected");
-        }
-    });
-});
-  </script>
+        });
+    </script>
 </body>
 </html>
