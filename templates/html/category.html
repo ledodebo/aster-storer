@@ -313,21 +313,7 @@
   <script src="{% static 'js/ajax.js'%}"></script>
   <script src="{% static  'vendors/nouislider/nouislider.min.js' %}"></script>
   <script>
-      document.querySelector('.toggle-filter-btn').addEventListener('click', function() {
-      const filterBar = document.querySelector('.filter-bar');
-      if (filterBar.style.display === 'none' || filterBar.style.display === '') {
-        filterBar.style.display = 'flex';
-        filterBar.style.opacity = 0;
-        setTimeout(() => {
-          filterBar.style.opacity = 1;
-        }, 10);
-      } else {
-        filterBar.style.opacity = 0;
-        setTimeout(() => {
-          filterBar.style.display = 'none';
-        }, 300);
-      }
-    });
+     
    setTimeout(() => {
   console.log("Delayed for 1 second.");
   Toastify({
