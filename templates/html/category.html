@@ -1,4 +1,5 @@
 {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,70 +7,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aroma Shop - Category</title>
-	<link rel="icon" href="img/Fevicon.png" type="image/png">
-  
-  
-	
-	<link rel="stylesheet" href="{% static 'vendors/linericon/style.css'%}">
-  
- 
-  
+  <link rel="icon" href="img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="{% static 'vendors/linericon/style.css'%}">
   <link rel="stylesheet" href="{% static 'vendors/nouislider/nouislider.min.css' %}">
-  
-  	<link rel="icon" href="{% static 'imgs/logo.png'%}" type="image/png">
   <link rel="stylesheet" href="{% static 'vendors/bootstrap/bootstrap.min.css'%}">
   <link rel="stylesheet" href="{% static 'vendors/fontawesome/css/all.min.css'%}">
-	<link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css'%}">
+  <link rel="stylesheet" href="{% static 'vendors/themify-icons/themify-icons.css'%}">
   <link rel="stylesheet" href="{% static 'vendors/nice-select/nice-select.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.theme.default.min.css'%}">
   <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css'%}">
-
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .filter-bar {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: none  ;
+    }
+
+    .filter-bar p {
+      margin: 0 10px 0 0;
+    }
+
+    .filter-bar button,input[type="submit"] {
+      background-color: #693a86;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .filter-bar button,input[type="submit"]:hover {
+      background-color: #5a2e71;
+    }
+
+    .toggle-filter-btn {
+      background-color: #693a86;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .toggle-filter-btn:hover {
+      background-color: #5a2e71;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .search-bar button,input[type="submit"] {
+      background-color: #693a86;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .search-bar button,input[type="submit"]:hover {
+      background-color: #5a2e71;
+    }
+  </style>
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
-   {% include "parts/navbar.html" %}
-	<!--================ End Header Menu Area =================-->
-	<!-- ================ start banner area ================= -->	
-	<!-- ================ end banner area ================= -->
-	   {% if messages %}
-    {% for message in messages %}
-	<div class="alert alert-success align-items-center" style="width: 100%; text-align: center;" role="alert">
-  {{ message }}
-</div>
-    {% endfor %}
-{% endif %}
-	<!-- ================ category section start ================= -->	
-  	  
+  {% include "parts/navbar.html" %}
+  <!--================ End Header Menu Area =================-->
+  <!-- ================ start banner area ================= -->
+  <!-- ================ end banner area ================= -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success align-items-center" style="width: 100%; text-align: center;" role="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+  <!-- ================ category section start ================= -->
   <section class="section-margin--small mb-5">
     <div class="container">
       <div class="row">
-          <div class="sidebar-categories">
-            <form class="" method="GET" >
+        <div class="col-12">
+          <form method="get">
+          <div  class="filter-bar d-flex flex-wrap align-items-center">
+            <p>Brands:</p>
+            <p>{{ filter.form.brand }}</p>
+            <p>Genders:</p>
+            <p>{{ filter.form.genders }}</p>
+            <p>Category:</p>
+            <p>{{ filter.form.Category }}</p>
+            <p>Size:</p>
+            <p>{{ filter.form.size }}</p>
+            <input type="submit" value="Search" class="button">
+          </div>
+          <div class="search-bar">
+            <input type="text" placeholder="Search products...">
+            <button type="submit" value="" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-xl-7 col-lg-3 col-md-7">
-          <!-- Start Filter Bar -->
-          <div class="head" style="width: 100%;background-color: #693a86;padding: 3%;color: #fff;font-size: large;">Categories</div>
-          <div style="font-size: 15px;" class="filter-bar d-flex flex-wrap align-items-center">  
-           <p>brands:</p>
-           &nbsp;
-            <p>  {{ filter.form.brand  }} </p>
-              <p>Genders:</p>
-              &nbsp;
-            <p>  {{ filter.form.genders  }}</p>
-              <p>Category:</p>
-              &nbsp;
-              <p>{{ filter.form.Category}}</p>
-              <p>size:</p>
-              &nbsp;
-              <p>{{ filter.form.size}}</p>
-             <input type="submit" value="Search"  class="button ">
-           </form>
-          </div>
-            <!-- End Filter Bar -->
           <!-- Start Best Seller -->
-          <section style="text-align: center;"  class=" ">
+          <section style="text-align: center;">
             <div    class="row ">
               {% for i in filter.qs  %}
               <div class="">
@@ -144,6 +212,9 @@
     </div>
   </section>
   <style>
+     body {
+    font-family: 'Oswald', sans-serif;
+}
  .card-product {
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -242,6 +313,21 @@
   <script src="{% static 'js/ajax.js'%}"></script>
   <script src="{% static  'vendors/nouislider/nouislider.min.js' %}"></script>
   <script>
+      document.querySelector('.toggle-filter-btn').addEventListener('click', function() {
+      const filterBar = document.querySelector('.filter-bar');
+      if (filterBar.style.display === 'none' || filterBar.style.display === '') {
+        filterBar.style.display = 'flex';
+        filterBar.style.opacity = 0;
+        setTimeout(() => {
+          filterBar.style.opacity = 1;
+        }, 10);
+      } else {
+        filterBar.style.opacity = 0;
+        setTimeout(() => {
+          filterBar.style.display = 'none';
+        }, 300);
+      }
+    });
    setTimeout(() => {
   console.log("Delayed for 1 second.");
   Toastify({
