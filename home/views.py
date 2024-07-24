@@ -59,6 +59,7 @@ def get_expected_delivery_date():
 
 #________________________________________________________________________________________________________________________________________________________
 def checkout(requset):
+    prc = 0
     form = order()
     if requset.GET.get('number'):
         print (requset.GET.get('number'))
@@ -112,12 +113,15 @@ def checkout(requset):
         if not isinstance(total_price, Decimal):
             total_price = Decimal(total_price)
         # Convert discount_percent to Decimal
-        discount_percent_decimal = Decimal(discount_percent) / Decimal(100)    
+        discount_percent_decimal = Decimal(discount_percent) / Decimal(100)  
+        prc =  (Decimal(discount_percent))  
         discount_amount = total_price * discount_percent_decimal
         total_price -= discount_amount
     r =  (item.quantity * item.product.discount for item in cart_items)
     total_price = int(total_price)
-    return render (requset,"html/checkout.html",{'form':form , 'cart_items': cart_items, 'total_price': total_price,"totalr":r,'discount_code': discount_code})
+    return render (requset,"html/checkout.html",{'form':form ,
+                                                 "percent" : prc 
+                                                 ,'cart_items': cart_items, 'total_price': total_price,"totalr":r,'discount_code': discount_code})
 #________________________________________________________________________________________________________________________________________________________
 def register_usr(requset):
     form = SignUpForm()
