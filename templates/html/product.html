@@ -46,13 +46,62 @@
                             <label class="form-label" style="margin-top: 8px; text-align: center; font-size: 15px;" id="qty" for="form1">Quantity:</label>
                             <input type="number" id="form1" value="1" class="form-control form-icon-trailing" style="width: 80px; margin-left: 10px;" />
                         </div>
+                        <h4 style="text-align: center;padding: 20px;text-decoration: underline;line-height: 20px;">الانواع المتوفرة</h1>
                         {% for i in pv %}
-                        <div class="card" style="margin-top: 10px;">
-                            <div class="card-body" style="border: 0.5px solid; border-color: #693a86; text-align: center; font-size: 10px; color: black; font-weight: 900; letter-spacing: 0.3px;">
+                        <div class="var">
+                            <div class="var-body">
                                 <input class="form-check-input" {{ i.ava }} type="radio" name="type" value="{{ i.id }}" id="">
-                                <span style="color: black;">Size: </span>{{ i.size }} -- <span style="color: black;">Type: </span>{{ i.type }} -- <span style="color: black;">Price: </span>{{ i.discount }} EGP
+                                <span class="label">Size:</span> {{ i.size }}
+                                <span class="label">Type:</span> {{ i.type }}
+                                <span class="label">Price:</span> {{ i.discount }} EGP
                             </div>
                         </div>
+                        <style>/* General Card Styling */
+                            .card {
+                                margin-top: 10px;
+                                border: 0.5px solid #693a86;
+                                border-radius: 8px; /* Optional: Adds rounded corners */
+                                overflow: hidden; /* Ensures content stays inside rounded corners */
+                            }
+                            
+                            /* Card Body Styling */
+                            .var-body {
+                             
+                                flex-direction: column;
+                                align-items: center;
+                                text-align: center;
+                                font-size: 14px; /* Slightly larger font size for better readability */
+                                color: black;
+                                font-weight: 900;
+                                letter-spacing: 0.3px;
+                                padding: 10px; /* Adds some padding around the content */
+                            }
+                            
+                            /* Label Styling */
+                            .label {
+                                color: black;
+                                margin-right: 4px;
+                            }
+                            
+                            /* Responsive Design */
+                            @media (min-width: 600px) {
+                                .var-body {
+                                    flex-direction: row;
+                                    justify-content: space-between;
+                                }
+                            
+                                .label, .form-check-input {
+                                    margin-bottom: 0;
+                                }
+                            }
+                            
+                            /* Optional: Add some hover effect to the card */
+                            .var:hover {
+                                box-shadow: 0 6px 11px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow on hover */
+                                border: black 1px solid;
+                                transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+                            }
+                            </style>
                         <span style="display: none;" id="idd">{{ i.id }}</span>
                         {% endfor %}
                         <a class="btn btn-primary mt-3 mb-3" id="add-to-cart">اضافة المنتج </a>
